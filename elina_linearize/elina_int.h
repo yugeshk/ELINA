@@ -30,7 +30,6 @@
 #include <stdio.h>
 #include <limits.h>
 #include <cmath>
-use std::isfinite
 #include <string.h>
 #include <assert.h>
 #include <stdint.h>
@@ -162,7 +161,7 @@ static inline bool int_set_double(long int* a, double b)
 {
   double c;
   c = ceil(b);
-  if (!std::isfinite(c)) { *a = 0; return false; }
+  if (!isfinite(c)) { *a = 0; return false; }
   *a = (long int)c;
   return (b==c);
 }
