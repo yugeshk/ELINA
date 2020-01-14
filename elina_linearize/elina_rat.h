@@ -31,7 +31,8 @@
 #include <limits.h>
 #include <string.h>
 #include <assert.h>
-#include <math.h>
+#include <cmath>
+using std::isfinite
 #include <stdint.h>
 #include "gmp.h"
 #include "mpfr.h"
