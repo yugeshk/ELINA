@@ -44,6 +44,13 @@
 
 #include "elina_int.h"
 
+/* Return nonzero value if X is not +-Inf or NaN.  */
+# if __GNUC_PREREQ (4,4) && !defined __SUPPORT_SNAN__
+#  define isfinite(x) __builtin_isfinite (x)
+# else
+#  define isfinite(x) __MATH_TG ((x), __finite, (x))
+# endif
+
 
 #ifdef __cplusplus
 extern "C" {
