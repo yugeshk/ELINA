@@ -31,8 +31,7 @@
 #include <limits.h>
 #include <string.h>
 #include <assert.h>
-#include <cmath>
-using std::isfinite
+#include <math.h>
 #include <stdint.h>
 #include "gmp.h"
 #include "mpfr.h"
@@ -81,7 +80,7 @@ static inline bool elina_rat_set_mpq(elina_rat_t* a, mpq_t b)
 /* double -> elina_rat */
 static inline bool elina_rat_set_double_tmp(elina_rat_t* a, double k, mpq_t mpq)
 {
-  if (!isfinite(k)) {elina_rat_set_int(a,0); return false; }
+  if (!std::isfinite(k)) {elina_rat_set_int(a,0); return false; }
   mpq_set_d(mpq,k);
   elina_rat_set_mpq(a,mpq);
   return true;
