@@ -32,7 +32,7 @@
 #include <string.h>
 #include <assert.h>
 #include <math.h>
-using std::isfinite
+using std::isfinite;
 #include <stdint.h>
 #include "gmp.h"
 #include "mpfr.h"
