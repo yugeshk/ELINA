@@ -29,7 +29,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
-#include <cmath>
+#include <math.h>
+using std:isfinite
 #include <string.h>
 #include <assert.h>
 #include <stdint.h>
