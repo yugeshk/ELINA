@@ -45,6 +45,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+	
+/* Return nonzero value if X is not +-Inf or NaN.  */
+# if __GNUC_PREREQ (4,4) && !defined __SUPPORT_SNAN__
+#  define isfinite(x) __builtin_isfinite (x)
+# else
+#  define isfinite(x) __MATH_TG ((x), __finite, (x))
+# endif
 
 typedef long long int elina_int_t;
 #define ELINA_INT_ZERO 0LL
