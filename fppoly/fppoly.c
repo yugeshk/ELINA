@@ -1328,3 +1328,4 @@ void update_bounds_for_neuron(elina_manager_t *man, elina_abstract0_t *abs, size
 	neuron->lb = -lb;
 	neuron->ub = ub;
 }
+
