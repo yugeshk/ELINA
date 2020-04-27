@@ -50,6 +50,7 @@ LIBS = -L../partitions_api -lpartitions -L$(APRON_PREFIX)/lib -lapron  -L../elin
 INCLUDES = -I$(APRON_PREFIX)/include -I../ -I../apron_interface -I../elina_linearize -I../partitions_api $(MPFR_INCLUDE_FLAG) $(GMP_INCLUDE_FLAG)
 endif
 
+CCFLAGS = $(CFLAGS) -Wno-psabi
 
 INSTALL = install
 INSTALLd = install -d
@@ -62,51 +63,51 @@ all : liboptoct.so elina_test_oct
 
 
 opt_oct_closure_comp_sparse.o : opt_oct_closure_comp_sparse.h opt_oct_closure_comp_sparse.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_comp_sparse.o opt_oct_closure_comp_sparse.c $(LIBS)
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_comp_sparse.o opt_oct_closure_comp_sparse.c $(LIBS)
 
 opt_oct_incr_closure_comp_sparse.o : opt_oct_incr_closure_comp_sparse.h opt_oct_incr_closure_comp_sparse.c opt_oct_closure_comp_sparse.o
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_comp_sparse.o opt_oct_incr_closure_comp_sparse.c $(LIBS) opt_oct_closure_comp_sparse.o
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_comp_sparse.o opt_oct_incr_closure_comp_sparse.c $(LIBS) opt_oct_closure_comp_sparse.o
 
 #ifneq ($(IS_VECTOR),)
 opt_oct_closure_dense_scalar.o : opt_oct_closure_dense_scalar.h opt_oct_closure_dense_scalar.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_dense_scalar.o opt_oct_closure_dense_scalar.c $(LIBS)
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_dense_scalar.o opt_oct_closure_dense_scalar.c $(LIBS)
 
 opt_oct_incr_closure_dense_scalar.o : opt_oct_incr_closure_dense_scalar.h opt_oct_incr_closure_dense_scalar.c opt_oct_closure_dense_scalar.o
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_dense_scalar.o opt_oct_incr_closure_dense_scalar.c $(LIBS) opt_oct_closure_dense_scalar.o
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_dense_scalar.o opt_oct_incr_closure_dense_scalar.c $(LIBS) opt_oct_closure_dense_scalar.o
 
 
 #else
 opt_oct_closure_dense.o : opt_oct_closure_dense.h opt_oct_closure_dense.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_dense.o opt_oct_closure_dense.c $(LIBS)
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_closure_dense.o opt_oct_closure_dense.c $(LIBS)
 
 opt_oct_incr_closure_dense.o : opt_oct_incr_closure_dense.h opt_oct_incr_closure_dense.c opt_oct_closure_dense.o
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_dense.o opt_oct_incr_closure_dense.c $(LIBS) opt_oct_closure_dense.o
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_incr_closure_dense.o opt_oct_incr_closure_dense.c $(LIBS) opt_oct_closure_dense.o
 
 #endif
 
 opt_oct_hmat.o : opt_oct_hmat.h opt_oct_hmat.c 
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_hmat.o opt_oct_hmat.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_hmat.o opt_oct_hmat.c $(LIBS) 
 
 opt_oct_nary.o : opt_oct_nary.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_nary.o opt_oct_nary.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_nary.o opt_oct_nary.c $(LIBS) 
 
 opt_oct_resize.o : opt_oct_resize.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_resize.o opt_oct_resize.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_resize.o opt_oct_resize.c $(LIBS) 
 
 opt_oct_predicate.o : opt_oct_predicate.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_predicate.o opt_oct_predicate.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_predicate.o opt_oct_predicate.c $(LIBS) 
 
 opt_oct_representation.o : opt_oct_representation.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_representation.o opt_oct_representation.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_representation.o opt_oct_representation.c $(LIBS) 
 
 opt_oct_transfer.o : opt_oct_transfer.c
-	$(CC) -c $(CFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_transfer.o opt_oct_transfer.c $(LIBS) 
+	$(CC) -c $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o opt_oct_transfer.o opt_oct_transfer.c $(LIBS) 
 
 liboptoct.so : $(OBJS) $(OPTOCTH)
-	$(CC) -shared $(CC_ELINA_DYLIB) $(CFLAGS) $(DFLAGS) $(INCLUDES) -o $(SOINST) $(OBJS) $(LIBS)
+	$(CC) -shared $(CC_ELINA_DYLIB) $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o $(SOINST) $(OBJS) $(LIBS)
 
 elina_test_oct : elina_test_oct.c liboptoct.so
-	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -o elina_test_oct elina_test_oct.c $(LIBS) -L. -loptoct
+	$(CC) $(CCFLAGS) $(DFLAGS) $(INCLUDES) -o elina_test_oct elina_test_oct.c $(LIBS) -L. -loptoct
 
 install:
 	$(INSTALLd) $(LIBDIR); \
