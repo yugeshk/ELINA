@@ -50,7 +50,7 @@ LIBS = -L../partitions_api -lpartitions -L$(APRON_PREFIX)/lib -lapron  -L../elin
 INCLUDES = -I$(APRON_PREFIX)/include -I../ -I../apron_interface -I../elina_linearize -I../partitions_api $(MPFR_INCLUDE_FLAG) $(GMP_INCLUDE_FLAG)
 endif
 
-CCFLAGS = $(CFLAGS) -Wno-psabi
+CCFLAGS = $(CFLAGS) -Wno-psabi -mavx -Wno-sign-compare
 
 INSTALL = install
 INSTALLd = install -d
