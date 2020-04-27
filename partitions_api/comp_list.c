@@ -286,7 +286,7 @@ comp_list_t* comp_list_deserialize(void* p, unsigned short int length, size_t* s
       buf[i]->head = comp_deserialize(p + idx, buf[i]->size, &comp_size);
       idx += comp_size;
     }
-    for(size_t i = 0; i < length - 1; i++){
+    for(unsigned short int i = 0; i < length - 1; i++){
       buf[i]->next = buf[i + 1];
     }
     buf[length - 1]->next = NULL;
