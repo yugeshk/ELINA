@@ -580,7 +580,7 @@ JAR = $jar
 JNIINC = -I$java_home/include/
 
 # C compilation flags
-CFLAGS = $cflags
+CFLAGS = $cflags -w -mavx
 
 # Architecture specific flags
 AFLAGS = -D_GNU_SOURCE -pthread -fno-tree-vectorize -m64 -march=native -ffp-contract=off
