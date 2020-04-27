@@ -217,7 +217,7 @@ bool elina_abstract0_check_dim_array(elina_funid_t funid, elina_manager_t* man,
   for (i=0;i<size;i++){
     elina_dim_t dim = tdim[i];
     if (dim>=dimension.intdim+dimension.realdim){
-      char str[80];
+      char str[81];
       sprintf(str,"incompatible %luth dimension in the array for the abstract value",(unsigned long)i);
       elina_abstract0_check_dim_raise(funid,man,dimension,dim,str);
       return false;
